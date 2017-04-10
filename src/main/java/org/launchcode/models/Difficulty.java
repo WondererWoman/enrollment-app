@@ -1,8 +1,7 @@
 package org.launchcode.models;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

@@ -27,6 +27,7 @@ public class CourseController {
     @Autowired
     private DifficultyDao difficultyDao;
 
+    @RequestMapping(value = "")
     public String index(Model model){
 
         model.addAttribute("title", "List of Courses");

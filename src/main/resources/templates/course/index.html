@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body class="container">
 
 <h1 th:text="${title}"></h1>
@@ -21,11 +18,11 @@
         <th>Difficulty</th>
     </tr>
 
-    <tr th:each="course : ${courses)">
-        <td th:text="${course.name"></td>
-        <td th:text="${course.instructor"></td>
-        <td th:text="${course.description"></td>
-        <td th:text="${course.difficulty}"></td>
+    <tr th:each="course : ${courses}">
+        <td th:text="${course.name}"></td>
+        <td th:text="${course.instructor.name}"></td>
+        <td th:text="${course.description}"></td>
+        <td th:text="${course.difficulty.level}"></td>
     </tr>
 
 </table>

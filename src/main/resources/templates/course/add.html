@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body class="container">
-<h1 th:text="$title"></h1>
+<h1 th:text="${title}"></h1>
 
 <nav th:replace="fragments :: navigation"></nav>
 
@@ -17,8 +14,11 @@
     </div>
     <div class="form-group">
         <label th:for="instructor">Instructor</label>
-        <input class="form-control" th:field="*{instructor}" />
-        <span th:errors="*{instructor}" class="error"></span>
+        <select name="instructorId">
+            <option th:each="instructor : ${instructors}"
+                    th:text="${instructor.name}"
+                    th:value="${instructor.id}"></option>
+        </select>
     </div>
     <div class="form-group">
         <label th:for="description">Description</label>
@@ -29,7 +29,7 @@
         <label th:for="difficulty">Difficulty</label>
         <select name="difficultyId">
             <option th:each="difficulty : ${difficulties}"
-                    th:text="${difficulty.name}"
+                    th:text="${difficulty.level}"
                     th:value="${difficulty.id}"></option>
         </select>
     </div>
