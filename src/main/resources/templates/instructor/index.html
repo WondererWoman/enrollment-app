@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h2 th:text="${title}"></h2>
+
+<nav th:replace="fragments :: navigation"></nav>
+<nav th:replace="fragments :: instructor-navigation"></nav>
+
+<table class="table">
+    <tr>
+        <th>Name: </th>
+        <th>Bio: </th>
+    </tr>
+
+    <tr th:each="instructor : ${instructors}">
+        <td th:text="${instructor.name}"></td>
+        <td th:text="${instructor.bio}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -32,7 +32,7 @@ public class Instructor {
 
     @OneToMany
     @JoinColumn(name = "instructor_id")
-    private List<Instructor> instructors = new ArrayList<>();
+    private List<Course> courses = new ArrayList<>();
 
     public Instructor() {
     }

@@ -5,6 +5,7 @@
 <h2 th:text="${title}"></h2>
 
 <nav th:replace="fragments :: navigation"></nav>
+<nav th:replace="fragments :: instructor-navigation"></nav>
 
 <form th:object="${instructor}" method="post">
     <div class="form-group">

@@ -9,12 +9,18 @@
 
 </head>
 <body>
-<nav th:fragment="navigation">
-    <a href="/course">Courses</a> |
+<nav th:fragment="course-navigation">
     <a href="/course/add">Add Courses</a> |
     <a href="/course/remove">Remove Courses</a> |
-    <a href="/instructor/add">Add Instructor</a> |
-    <a href="/difficulty/add">Add Difficulty Level</a>
+    <a href="/difficulty/add">Add Difficulty Level</a> |
 </nav>
+<nav th:fragment="navigation">
+    <a href="/course">Courses</a> |
+    <a href="/instructor">Instructors</a> |
+</nav>
+<nav th:fragment="instructor-navigation">
+    <a href="/instructor/add">Add Instructor</a> |
+</nav>
+
 </body>
 </html>

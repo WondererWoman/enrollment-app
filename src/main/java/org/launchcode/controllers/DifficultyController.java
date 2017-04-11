@@ -28,7 +28,7 @@ public class DifficultyController {
         model.addAttribute("title", "Difficulty Levels");
         model.addAttribute("difficulties", difficultyDao.findAll());
 
-        return "difficulty/index";
+        return "course/index";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
@@ -49,7 +49,7 @@ public class DifficultyController {
             return "difficulty/add";
         }else {
             difficultyDao.save(difficulty);
-            return "redirect:";
+            return "redirect:/course/";
         }
     }
 }

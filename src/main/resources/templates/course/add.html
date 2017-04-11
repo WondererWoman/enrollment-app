@@ -13,17 +13,17 @@
         <span th:errors="*{name}" class="error"></span>
     </div>
     <div class="form-group">
-        <label th:for="instructor">Instructor</label>
+        <label th:for="description">Description</label>
+        <input class="form-control" th:field="*{description}" />
+        <span th:errors="*{description}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="instructor">Instructor: </label>
         <select name="instructorId">
             <option th:each="instructor : ${instructors}"
                     th:text="${instructor.name}"
                     th:value="${instructor.id}"></option>
         </select>
-    </div>
-    <div class="form-group">
-        <label th:for="description">Description</label>
-        <input class="form-control" th:field="*{description}" />
-        <span th:errors="*{description}" class="error"></span>
     </div>
     <div class="form-group">
         <label th:for="difficulty">Difficulty</label>

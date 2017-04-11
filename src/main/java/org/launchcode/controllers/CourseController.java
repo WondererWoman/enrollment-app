@@ -1,8 +1,11 @@
 package org.launchcode.controllers;
 
 import org.launchcode.models.Course;
+import org.launchcode.models.Difficulty;
+import org.launchcode.models.Instructor;
 import org.launchcode.models.data.CourseDao;
 import org.launchcode.models.data.DifficultyDao;
+import org.launchcode.models.data.InstructorDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +30,9 @@ public class CourseController {
     @Autowired
     private DifficultyDao difficultyDao;
 
+    @Autowired
+    private InstructorDao instructorDao;
+
     @RequestMapping(value = "")
     public String index(Model model){
 
@@ -41,13 +47,21 @@ public class CourseController {
         model.addAttribute("title", "Add New Course");
         model.addAttribute(new Course());
         model.addAttribute("difficulties", difficultyDao.findAll());
+        model.addAttribute("instructors", instructorDao.findAll());
 
         return "course/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddCourseForm(@ModelAttribute @Valid Course newCourse,
-                                       Errors errors, @RequestParam int difficulty_id, Model model){
+                                       Errors errors, @RequestParam int difficultyId,
+                                       @RequestParam int instructorId, Model model){
+
+        Difficulty dif = difficultyDao.findOne(difficultyId);
+        newCourse.setDifficulty(dif);
+
+        Instructor inst = instructorDao.findOne(instructorId);
+        newCourse.setInstructor(inst);
 
         if (errors.hasErrors()){
             model.addAttribute("title", "Add New Course");
@@ -56,6 +70,7 @@ public class CourseController {
 
         courseDao.save(newCourse);
         return "redirect:";
+
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)

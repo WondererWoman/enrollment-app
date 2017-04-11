@@ -24,23 +24,21 @@ public class Course {
     private String name;
 
     @NotNull
-    private String instructor;
-
-    @NotNull
     @Size(min = 1, message = "Description must not be empty")
     private String description;
 
     @ManyToOne
     private Difficulty difficulty;
 
-    public Course(String name, String instructor, String description, Difficulty difficulty) {
-        this.name = name;
-        this.instructor = instructor;
-        this.description = description;
-        this.difficulty = difficulty;
+    @ManyToOne
+    private Instructor instructor;
+
+    public Course() {
     }
 
-    public Course(){ }
+    public Course(String name, String description) {
+        this.name = name;
+        this.description = description;}
 
     public int getId() {
         return id;
@@ -52,14 +50,6 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getInstructor() {
-        return instructor;
-    }
-
-    public void setInstructor(String instructor) {
-        this.instructor = instructor;
     }
 
     public String getDescription() {
@@ -77,4 +67,13 @@ public class Course {
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
     }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
 }
+

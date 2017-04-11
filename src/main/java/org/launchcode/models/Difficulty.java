@@ -25,7 +25,7 @@ public class Difficulty {
 
     @OneToMany
     @JoinColumn(name = "difficulty_id")
-    private List<Difficulty> difficulties = new ArrayList<>();
+    private List<Course> courses = new ArrayList<>();
 
     public Difficulty() {
     }
