@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -51,5 +52,24 @@ public class DifficultyController {
             difficultyDao.save(difficulty);
             return "redirect:/course/";
         }
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String remove(Model model){
+
+        model.addAttribute("title", "Remove Difficulty");
+        model.addAttribute("difficulties", difficultyDao.findAll());
+
+        return "difficulty/remove";
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String remove(@RequestParam int[] difficultyIds){
+
+        for (int difficultyId : difficultyIds) {
+            difficultyDao.delete(difficultyId);
+        }
+
+        return "redirect:";
     }
 }

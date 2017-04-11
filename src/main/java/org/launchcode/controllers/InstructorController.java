@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -52,6 +53,25 @@ public class InstructorController {
             instructorDao.save(instructor);
             return "redirect:";
         }
+
+    }
+    @RequestMapping(value = "remove", method = RequestMethod.GET)
+    public String remove(Model model){
+
+        model.addAttribute("title", "Remove Instructor");
+        model.addAttribute("instructors", instructorDao.findAll());
+
+        return "instructor/remove";
+    }
+
+    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    public String remove(@RequestParam int[] instructorIds){
+
+        for (int instructorId : instructorIds){
+            instructorDao.delete(instructorId);
+        }
+
+        return "redirect:";
     }
 
 
