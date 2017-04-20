@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"/>
+<body class="container">
+
+<h1 th:text="${title}"></h1>
+
+<h3>My Courses</h3>
+
+<p th:unless="${courses} and ${courses.size()}"> No Courses Scheduled</p>
+
+<table class="table">
+
+    <tr>
+        <th>Name</th>
+        <th>Instructor</th>
+        <th>Description</th>
+        <th>Difficulty</th>
+    </tr>
+
+    <tr th:each="course : ${courses}">
+        <td th:text="${course.name}"></td>
+        <td th:text="${course.instructor.name}"></td>
+        <td th:text="${course.description}"></td>
+        <td th:text="${course.difficulty.level}"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>

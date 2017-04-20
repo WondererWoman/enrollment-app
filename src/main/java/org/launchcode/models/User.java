@@ -5,9 +5,11 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created by Erin DeVries on 4/11/2017.
@@ -20,7 +22,7 @@ public class User {
     private int id;
 
     @NotNull
-    @Size(min = 8, max = 15, message = "Username must be between 8 and 15 characters")
+    @Size(min = 6, max = 15, message = "Username must be between 6 and 15 characters")
     private String username;
 
     @Email
@@ -35,6 +37,9 @@ public class User {
     @NotNull(message = "Passwords do not match")
     private String verify;
 
+    @ManyToMany
+    List<Course> courses;
+
     public User() {
     }
 
@@ -48,6 +53,10 @@ public class User {
         this.email = email;
         this.password = password;
         this.verify = verify;
+    }
+
+    public void addItem(Course item){
+        courses.add(item);
     }
 
     public int getId() {
@@ -86,5 +95,9 @@ public class User {
     public void setVerify(String verify) {
         this.verify = verify;
         checkPassword(password, verify);
+    }
+
+    public List<Course> getCourses() {
+        return courses;
     }
 }

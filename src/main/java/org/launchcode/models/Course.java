@@ -1,13 +1,11 @@
 package org.launchcode.models;
 
 
-import javax.persistence.Id;
+import javax.persistence.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Created by Erin DeVries on 4/9/2017.
@@ -32,6 +30,9 @@ public class Course {
 
     @ManyToOne
     private Instructor instructor;
+
+    @ManyToMany(mappedBy = "courses")
+    private List<User> users;
 
     public Course() {
     }
