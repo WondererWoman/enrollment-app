@@ -38,7 +38,7 @@ public class User {
     private String verify;
 
     @ManyToMany
-    List<Course> courses;
+    private List<Course> courses;
 
     public User() {
     }
@@ -56,7 +56,7 @@ public class User {
     }
 
     public void addItem(Course item){
-        courses.add(item);
+        this.courses.add(item);
     }
 
     public int getId() {
@@ -100,4 +100,5 @@ public class User {
     public List<Course> getCourses() {
         return courses;
     }
+
 }

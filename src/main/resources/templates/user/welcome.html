@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head th:replace="fragments :: head"/>
 <body class="container">
 
 <h1 th:text="${title}"></h1>
 
 <h3>My Courses</h3>
+
+<nav th:replace="fragments :: navigation"></nav>
 
 <p th:unless="${courses} and ${courses.size()}"> No Courses Scheduled</p>
 
@@ -26,6 +28,10 @@
     </tr>
 
 </table>
+
+<form method="post">
+<button><a href="enroll">Enroll Now!</a></button>
+</form>
 
 </body>
 </html>

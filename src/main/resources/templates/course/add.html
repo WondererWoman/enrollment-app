@@ -18,16 +18,16 @@
         <span th:errors="*{description}" class="error"></span>
     </div>
     <div class="form-group">
-        <label th:for="instructor">Instructor: </label>
-        <select name="instructorId">
+        <label th:for="instructor">Instructor Id: </label>
+        <select name="instructorId" class="form-control">
             <option th:each="instructor : ${instructors}"
                     th:text="${instructor.name}"
                     th:value="${instructor.id}"></option>
         </select>
     </div>
     <div class="form-group">
-        <label th:for="difficulty">Difficulty</label>
-        <select name="difficultyId">
+        <label th:for="difficulty">Difficulty: </label>
+        <select name="difficultyId" class="form-control">
             <option th:each="difficulty : ${difficulties}"
                     th:text="${difficulty.level}"
                     th:value="${difficulty.id}"></option>

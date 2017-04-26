@@ -6,7 +6,6 @@
 <h1 th:text="${title}"></h1>
 
 <nav th:replace="fragments :: navigation"></nav>
-<nav th:replace="fragments :: course-navigation"></nav>
 
 <p th:unless="${courses} and ${courses.size()}"> No Courses Scheduled</p>
 
