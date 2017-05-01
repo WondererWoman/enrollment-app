@@ -138,7 +138,7 @@ public class UserController {
         String userId= request.getSession().getAttribute("username").toString();
         model.addAttribute("username", userId);
 
-        return "user/enroll";
+        return "user/unenroll";
     }
 
     @RequestMapping(value = "unenroll", method = RequestMethod.POST)
@@ -154,6 +154,17 @@ public class UserController {
             userDao.save(user);
         }
         model.addAttribute("courses", user.getCourses());
+        return "user/welcome";
+    }
+    @RequestMapping(value = "myprofile", method = RequestMethod.GET)
+    public String myProfile(Model model, HttpServletRequest request){
+
+        int userId = (int) request.getSession().getAttribute("username");
+        User user = userDao.findOne(userId);
+
+        model.addAttribute("title", "Welcome, " + user.getUsername() + "!");
+        model.addAttribute("courses", user.getCourses());
+
         return "user/welcome";
     }
 }
