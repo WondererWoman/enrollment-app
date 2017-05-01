@@ -7,12 +7,16 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
+<h5>Note: Difficulty level can only be removed if not in use.</h5>
+
 <form method="post">
 
     <div th:each="difficulty : ${difficulties}">
-        <input type="checkbox" name="difficultyIds" th:value="${difficulty.id}" th:id="${difficulty.id}"/>
-        <label th:for="${difficulty.id}" th:text="${difficulty.level}"></label>
-        <br />
+        <div th:unless="!${difficulty.getCourses().isEmpty()}">
+            <input type="checkbox" name="difficultyIds" th:value="${difficulty.id}" th:id="${difficulty.id}"/>
+            <label th:for="${difficulty.id}" th:text="${difficulty.level}"></label>
+            <br />
+        </div>
     </div>
 
     <input type="submit" value="Remove Difficulty" />

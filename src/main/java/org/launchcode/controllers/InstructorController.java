@@ -1,6 +1,7 @@
 package org.launchcode.controllers;
 
 import org.launchcode.models.Instructor;
+import org.launchcode.models.data.CourseDao;
 import org.launchcode.models.data.InstructorDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class InstructorController {
 
     @Autowired
     private InstructorDao instructorDao;
+
+    @Autowired
+    private CourseDao courseDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model){
@@ -57,6 +61,8 @@ public class InstructorController {
     }
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String remove(Model model){
+
+        Instructor inst = new Instructor();
 
         model.addAttribute("title", "Remove Instructor");
         model.addAttribute("instructors", instructorDao.findAll());

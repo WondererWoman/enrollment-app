@@ -76,5 +76,16 @@ public class Course {
     public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void clearUsers(List<User> users, Course course) {
+        for (User user : users) {
+            user.removeItem(course);
+        }
+    }
 }
+
 

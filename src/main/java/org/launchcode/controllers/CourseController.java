@@ -85,7 +85,13 @@ public class CourseController {
     public String processRemoveCourseForm(@RequestParam int[] courseIds) {
 
         for (int courseId : courseIds) {
-            courseDao.delete(courseId);
+            if (courseDao.findOne(courseId).getUsers().isEmpty()) {
+                courseDao.delete(courseId);
+            }else {
+                Course coursed = courseDao.findOne(courseId);
+                coursed.clearUsers(coursed.getUsers(), coursed);
+                courseDao.delete(courseId);
+            }
         }
         return "redirect:";
     }

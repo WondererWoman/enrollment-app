@@ -45,4 +45,8 @@ public class Difficulty {
     public void setLevel(String level) {
         this.level = level;
     }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
 }

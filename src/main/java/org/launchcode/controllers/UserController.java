@@ -99,7 +99,8 @@ public class UserController {
     }
     @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request){
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
+        session.invalidate();
         return "redirect:";
     }
 
@@ -129,5 +130,30 @@ public class UserController {
         model.addAttribute("courses", user.getCourses());
         return "user/welcome";
     }
+    @RequestMapping(value = "unenroll", method = RequestMethod.GET)
+    public String unEnroll(Model model, HttpServletRequest request){
 
+        model.addAttribute("title", "Unenroll In A Course");
+        model.addAttribute("courses", courseDao.findAll());
+        String userId= request.getSession().getAttribute("username").toString();
+        model.addAttribute("username", userId);
+
+        return "user/enroll";
+    }
+
+    @RequestMapping(value = "unenroll", method = RequestMethod.POST)
+    public String unEnroll(Model model, @RequestParam int[] courseIds,
+                         HttpServletRequest request) {
+
+        int userId = (int) request.getSession().getAttribute("username");
+        User user = userDao.findOne(userId);
+
+        for (int courseId : courseIds) {
+            Course course = courseDao.findOne(courseId);
+            user.removeItem(course);
+            userDao.save(user);
+        }
+        model.addAttribute("courses", user.getCourses());
+        return "user/welcome";
+    }
 }

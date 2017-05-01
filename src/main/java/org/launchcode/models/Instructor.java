@@ -70,4 +70,8 @@ public class Instructor {
     public void setPhone_number(int phone_number) {
         this.phone_number = phone_number;
     }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
 }

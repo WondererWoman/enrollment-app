@@ -4,15 +4,17 @@
 <body class="container">
 
 <h1 th:text="${title}"></h1>
-
 <nav th:replace="fragments :: navigation"></nav>
+<h5>Note: Instructors can ony be removed if they are not currently instructing a course.</h5>
 
 <form method="post">
 
     <div th:each="instructor : ${instructors}">
-        <input type="checkbox" name="instructorIds" th:value="${instructor.id}" th:id="${instructor.id}"/>
-        <label th:for="${instructor.id}" th:text="${instructor.name}"></label>
-        <br />
+        <div th:unless="!${instructor.getCourses().isEmpty()}">
+            <input type="checkbox" name="instructorIds" th:value="${instructor.id}" th:id="${instructor.id}"/>
+            <label th:for="${instructor.id}" th:text="${instructor.name}"></label>
+            <br />
+        </div>
     </div>
 
     <input type="submit" value="Remove Instructor"/>

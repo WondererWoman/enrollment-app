@@ -59,6 +59,8 @@ public class User {
         this.courses.add(item);
     }
 
+    public void removeItem(Course item) {this.courses.remove(item);}
+
     public int getId() {
         return id;
     }
